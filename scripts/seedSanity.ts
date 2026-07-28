@@ -28,7 +28,26 @@ const client = createClient({
   useCdn: false,
 });
 
-const countriesData = [
+interface SanityCountryDoc {
+  _id: string;
+  _type: string;
+  name: string;
+  code: string;
+  domain: string;
+  flag?: string;
+  currency?: string;
+  tagline?: string;
+  phone?: string;
+  email?: string;
+  address?: string;
+  cityStateZip?: string;
+  officeHours?: string;
+  heroBadge?: string;
+  heroHeadline?: string;
+  heroSubheadline?: string;
+}
+
+const countriesData: SanityCountryDoc[] = [
   {
     _id: "country-us",
     _type: "country",
@@ -178,7 +197,7 @@ async function seed() {
 
   for (const country of countriesData) {
     try {
-      await client.createOrReplace(country);
+      await client.createOrReplace(country as any);
       console.log(`✓ Seeded Country: ${country.name} (${country.code})`);
     } catch (err: any) {
       console.error(`Error seeding country ${country.code}:`, err.message);
@@ -187,7 +206,7 @@ async function seed() {
 
   for (const s of servicesData) {
     try {
-      await client.createOrReplace(s);
+      await client.createOrReplace(s as any);
       console.log(`✓ Seeded Service: ${s.title}`);
     } catch (err: any) {
       console.error(`Error seeding service ${s.title}:`, err.message);
@@ -196,7 +215,7 @@ async function seed() {
 
   for (const ind of industriesData) {
     try {
-      await client.createOrReplace(ind);
+      await client.createOrReplace(ind as any);
       console.log(`✓ Seeded Industry: ${ind.title}`);
     } catch (err: any) {
       console.error(`Error seeding industry ${ind.title}:`, err.message);
