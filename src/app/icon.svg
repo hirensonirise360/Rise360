@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 32" fill="none">
+  {/* Outer Deep Navy Upward Chevron */}
+  <path d="M12.7403 29.6492L20.3652 18.9477L21.6158 17.1951L22.8664 18.9477L30.4913 29.6492L31.1287 30.5457H43.2316L21.6158 0L0 30.5457H12.1029L12.7403 29.6492Z" fill="#012269" />
+  {/* Inner Sky Blue Caret Triangle */}
+  <path d="M21.6158 19.8359L29.2406 30.5455H13.9909L21.6158 19.8359Z" fill="#4DA6FF" />
+</svg>
