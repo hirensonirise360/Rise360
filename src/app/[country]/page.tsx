@@ -28,17 +28,18 @@ export async function generateMetadata({
     return { title: "RISE360 Global Consulting" };
   }
 
-  const seo = countryConfig.seo || {};
+  const title = countryConfig.seo?.title || `RISE360 ${countryConfig.name} | Global Market Expansion & Advisory`;
+  const description = countryConfig.seo?.description || `RISE360 ${countryConfig.name} provides expert cross-border consulting, financial operations outsourcing, and market expansion advisory.`;
 
   return {
-    title: seo.title || `RISE360 ${countryConfig.name} | Global Market Expansion & Advisory`,
-    description: seo.description || `RISE360 ${countryConfig.name} provides expert cross-border consulting, financial operations outsourcing, and market expansion advisory.`,
+    title,
+    description,
     alternates: {
       canonical: `https://${countryConfig.domain}`,
     },
     openGraph: {
-      title: seo.title,
-      description: seo.description,
+      title,
+      description,
       url: `https://${countryConfig.domain}`,
       siteName: `RISE360 ${countryConfig.name}`,
     },

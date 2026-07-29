@@ -1,11 +1,14 @@
 import { cn } from "@/lib/utils";
 
 interface SectionBadgeProps {
-  label: string;
+  label?: string;
+  title?: string;
+  children?: React.ReactNode;
   className?: string;
 }
 
-export function SectionBadge({ label, className }: SectionBadgeProps) {
+export function SectionBadge({ label, title, children, className }: SectionBadgeProps) {
+  const content = label || title || children;
   return (
     <div
       className={cn(
@@ -14,7 +17,7 @@ export function SectionBadge({ label, className }: SectionBadgeProps) {
       )}
     >
       <span className="w-1.5 h-1.5 rounded-full bg-current animate-pulse-slow" />
-      {label}
+      {content}
     </div>
   );
 }

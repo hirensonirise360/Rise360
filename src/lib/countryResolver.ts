@@ -34,12 +34,18 @@ export function getCountryConfig(countryCode?: string | null): CountryProfile {
     ...globalConfig,
     ...targetConfig,
     seo: {
-      ...globalConfig.seo,
-      ...targetConfig.seo,
+      title: targetConfig.seo?.title || globalConfig.seo?.title || "",
+      description: targetConfig.seo?.description || globalConfig.seo?.description || "",
+      ogImage: targetConfig.seo?.ogImage || globalConfig.seo?.ogImage,
+      keywords: targetConfig.seo?.keywords || globalConfig.seo?.keywords,
     },
     contact: {
-      ...globalConfig.contact,
-      ...targetConfig.contact,
+      phone: targetConfig.contact?.phone || globalConfig.contact?.phone || "",
+      email: targetConfig.contact?.email || globalConfig.contact?.email || "",
+      address: targetConfig.contact?.address || globalConfig.contact?.address || "",
+      cityStateZip: targetConfig.contact?.cityStateZip || globalConfig.contact?.cityStateZip || "",
+      officeHours: targetConfig.contact?.officeHours || globalConfig.contact?.officeHours || "",
+      googleMapEmbedUrl: targetConfig.contact?.googleMapEmbedUrl || globalConfig.contact?.googleMapEmbedUrl,
     },
     homepage: {
       ...globalConfig.homepage,

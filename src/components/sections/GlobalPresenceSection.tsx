@@ -3,6 +3,12 @@
 import { motion } from "framer-motion";
 import { Globe2 } from "lucide-react";
 
+import { CountryProfile } from "@/config/countryConfig";
+
+interface GlobalPresenceSectionProps {
+  countryConfig?: CountryProfile;
+}
+
 const regions = [
   { name: "Canada", desc: "Market entry, accounting & compliance", cx: 20, cy: 35 },
   { name: "USA", desc: "Cross-border M&A, tax advisory", cx: 22, cy: 42 },
@@ -12,7 +18,7 @@ const regions = [
   { name: "Australia", desc: "Clean energy, life sciences", cx: 80, cy: 70 },
 ];
 
-export function GlobalPresenceSection() {
+export function GlobalPresenceSection({ countryConfig }: GlobalPresenceSectionProps = {}) {
   return (
     <section id="global-presence" className="section-padding bg-white border-b border-slate-200/80" aria-labelledby="global-heading">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

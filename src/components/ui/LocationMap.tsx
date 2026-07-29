@@ -4,17 +4,30 @@ import { useState } from "react";
 import { MapPin, ExternalLink, Copy, Check, Navigation, X } from "lucide-react";
 
 interface LocationMapProps {
-  address: string;
-  embedUrl: string;
-  directUrl: string;
+  address?: string;
+  addressText?: string;
+  embedUrl?: string;
+  googleMapsEmbedUrl?: string;
+  directUrl?: string;
+  directGoogleMapsUrl?: string;
 }
 
-export function LocationMap({ address, embedUrl, directUrl }: LocationMapProps) {
+export function LocationMap({
+  address,
+  addressText,
+  embedUrl,
+  googleMapsEmbedUrl,
+  directUrl,
+  directGoogleMapsUrl,
+}: LocationMapProps) {
+  const finalAddress = address || addressText || "";
+  const finalEmbedUrl = embedUrl || googleMapsEmbedUrl || "";
+  const finalDirectUrl = directUrl || directGoogleMapsUrl || "#";
   const [showInfo, setShowInfo] = useState(true);
   const [copied, setCopied] = useState(false);
 
   const handleCopy = () => {
-    navigator.clipboard.writeText(address);
+    navigator.clipboard.writeText(finalAddress);
     setCopied(true);
     setTimeout(() => setCopied(false), 2500);
   };
@@ -24,7 +37,7 @@ export function LocationMap({ address, embedUrl, directUrl }: LocationMapProps) 
       {/* Google Map iFrame */}
       <iframe
         title="RISE360 India Headquarters Map"
-        src={embedUrl}
+        src={finalEmbedUrl}
         width="100%"
         height="100%"
         style={{ border: 0 }}
@@ -95,14 +108,14 @@ export function LocationMap({ address, embedUrl, directUrl }: LocationMapProps) 
               Official Location Address
             </p>
             <p className="text-xs font-semibold leading-relaxed text-white select-all">
-              {address}
+              {finalAddress}
             </p>
           </div>
 
           {/* Actions Bar */}
           <div className="flex flex-wrap items-center gap-2 pt-1">
             <a
-              href={directUrl}
+              href={finalDirectUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-gradient-to-r from-[#0052CC] to-[#0066FF] hover:from-[#0044B3] hover:to-[#0052CC] text-white !text-white font-bold text-xs rounded-xl transition-all shadow-md"

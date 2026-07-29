@@ -12,17 +12,18 @@ import { getCountryContext } from "@/lib/getCountryContext";
 
 export async function generateMetadata(): Promise<Metadata> {
   const countryConfig = await getCountryContext();
-  const seo = countryConfig.seo || {};
+  const title = countryConfig.seo?.title || "RISE360 | Financial Professional Outsourcing Consultants | Global Market Entry";
+  const description = countryConfig.seo?.description || "RISE360 is your trusted partner for cross-border consulting, financial operations outsourcing, and global market expansion.";
 
   return {
-    title: seo.title || "RISE360 | Financial Professional Outsourcing Consultants | Global Market Entry",
-    description: seo.description || "RISE360 is your trusted partner for cross-border consulting, financial operations outsourcing, and global market expansion.",
+    title,
+    description,
     alternates: {
       canonical: `https://${countryConfig.domain}`,
     },
     openGraph: {
-      title: seo.title,
-      description: seo.description,
+      title,
+      description,
       url: `https://${countryConfig.domain}`,
       siteName: `RISE360 ${countryConfig.name}`,
     },
@@ -37,11 +38,11 @@ export default async function HomePage() {
       <HeroSection countryConfig={countryConfig} />
       <ProblemSection />
       <DifferentiatorsSection />
-      <ServicesSection />
-      <GlobalPresenceSection />
+      <ServicesSection countryConfig={countryConfig} />
+      <GlobalPresenceSection countryConfig={countryConfig} />
       <TestimonialsSection />
       <StatsSection countryConfig={countryConfig} />
-      <IndustriesSection />
+      <IndustriesSection countryConfig={countryConfig} />
       <CtaBand />
     </>
   );
